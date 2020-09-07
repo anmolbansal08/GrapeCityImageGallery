@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-
 using System.Threading;
 using System.Windows.Forms;
 
@@ -72,7 +71,7 @@ namespace ImageGalleryv1._0._1
                 }
                 ProgressBar();//circularProgressBar
               
-                statusStrip1.Visible = true;
+                
 
                     if (!cache.ContainsKey(input))//checking in our dictionory whether searched text 
                     //is already there or not
@@ -98,20 +97,15 @@ namespace ImageGalleryv1._0._1
                     Application.Exit();
 
                 }
-         
-
-        }
+           }
         private void initialsetup()
-        {
-
-            _imageTileControl.Groups[0].Tiles.Clear();
+        {       
+        _imageTileControl.Groups[0].Tiles.Clear();
             option_4Button.Visible = false;
             Option_8Button.Visible = false;
             greetuser.Visible = false;
             customTextBoxSearch.Visible = false;
             _export.Visible = false;
-
-
         }
         private void finalsetup()
         {
@@ -139,13 +133,12 @@ namespace ImageGalleryv1._0._1
                     Start(Application.ExecutablePath); // to start new instance of application
                 this.Close(); //to turn off current app
             }
+            statusStrip1.Visible = true;
         }
 
 
         private void AddTiles(List<ImageItem> imageList)
-        {
-            
-                //This method takes a list of images, 
+        { //This method takes a list of images, 
                 //loops through each image and add tile for each image
                 _imageTileControl.Groups[0].Tiles.Clear();
                 for (int i = 0; i < imageList.Count; i++)
@@ -172,8 +165,6 @@ namespace ImageGalleryv1._0._1
         {
             checkedItems++;//increment the counter if tile is clicked
             _export.Visible = true;
-
-
         }
 
         private void _imageTileControl_TileUnchecked(object sender, TileEventArgs e)
@@ -187,7 +178,6 @@ namespace ImageGalleryv1._0._1
             // method iterates through all the tiles, gets its image and 
             //convert this list of images to pdf using
             // ConvertToPdf method
-          
                 List<Image> images = new List<Image>();
                 foreach (Tile tile in _imageTileControl.Groups[0].Tiles)
                 {
@@ -210,17 +200,13 @@ namespace ImageGalleryv1._0._1
 
                 if (saveFile.ShowDialog() == DialogResult.OK)
                 {
-
-                    imagePdfDocument.Save(saveFile.FileName);
-
-                }
-            
+  imagePdfDocument.Save(saveFile.FileName);
+                }            
         }
     
         private void ConvertToPdf(List<Image> images)
         {
-
-            imagePdfDocument = new C1.C1Pdf.C1PdfDocument();
+        imagePdfDocument = new C1.C1Pdf.C1PdfDocument();
                 //This method creates a page for each image 
                 //and draws the image using DrawImage method
                 RectangleF rect = imagePdfDocument.PageRectangle;
@@ -233,9 +219,6 @@ namespace ImageGalleryv1._0._1
                     }
                     firstPage = false;
                     rect.Inflate(-72, -72);
-
-
-
                     imagePdfDocument.DrawImage(selectedimg, rect);
                 }
             }
@@ -261,17 +244,13 @@ namespace ImageGalleryv1._0._1
             e.Graphics.DrawRectangle(p, r);
             e.Graphics.DrawLine(p, new Point(0, 43), new
            Point(this.Width, 43));
-
         }
 
         private void close_Click(object sender, EventArgs e)
         { //to close the App
             Application.Exit();
         }
-
-
-
-
+        
         private void _search_Paint(object sender, PaintEventArgs e)
         {
             //  to add a grey border to the search box
@@ -280,30 +259,23 @@ namespace ImageGalleryv1._0._1
             r.Inflate(3, 3);
             Pen p = new Pen(Color.LightGray);
             e.Graphics.DrawRectangle(p, r);
-
         }
         //function for some load Animations
         private void ImageGallery_Load(object sender, EventArgs e)
         {
             winAPI.AnimateWindow(this.Handle, 2000, winAPI.VER_POSITIVE);
-          
         }
         //function for Option Selected4
         private void Option4Button(object sender, EventArgs e)
-        {
-            imagessearch = 4;
-            circularButtonHelper(1);
-            
+        {imagessearch = 4;
+            circularButtonHelper(1);  
         }
         //function for Option Selected8
 
         private void Option8Button(object sender, EventArgs e)
         {
-            imagessearch = 8;
-            
+            imagessearch = 8; 
             circularButtonHelper(2);
-
-          
         }
         //function for Helping Options Button to set Properties
         private void circularButtonHelper(int index)
@@ -316,14 +288,11 @@ namespace ImageGalleryv1._0._1
             else if (index == 2)
             {
                 option_4Button.Visible = false;
-
             }
             customTextBoxSearch.Visible = false;
             _search.Visible = true;
             isbuttonclicked = true;
-
             _searchBox.Visible = true;
-
         }
 
 
@@ -356,17 +325,13 @@ namespace ImageGalleryv1._0._1
         }
         //changes background color of Panel1 And Panel2
         private void backgroundcolorchange(object sender, EventArgs e)
-        {
-
-            try
+        {  try
             {
                 if (colorDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    
+                { 
                     _imageTileControl.BackColor = colorDialog1.Color;
                     tableLayoutPanel1.BackColor = colorDialog1.Color;
                     searchesleftlabel.BackColor = colorDialog1.Color;
-
                 }
             }
             catch
