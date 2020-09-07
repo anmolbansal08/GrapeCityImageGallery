@@ -78,7 +78,6 @@ namespace ImageGalleryv1._0._1
                     //is already there or not
                     {
                         imagesList = await datafetch.GetImageData(input, imagessearch);
-
                         cache.Add(input, imagesList);
                     }
                     else
