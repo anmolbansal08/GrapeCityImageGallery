@@ -23,7 +23,6 @@ namespace ImageGalleryv1._0._1
         Dictionary<String, List<ImageItem>> cache = new Dictionary<string, List<ImageItem>>();
         public ImageGallery()
         {
-
             InitializeComponent();
         }
 
@@ -44,7 +43,6 @@ namespace ImageGalleryv1._0._1
                             MessageBox.Show("Please enter something in the CustomInputBox");
                             greetuser.Visible = true;
                             customTextBoxSearch.Visible = true;
-
                             //initialsetup();
                             return; // return because we don't want to
                             // run normal code of buton click
@@ -70,10 +68,7 @@ namespace ImageGalleryv1._0._1
                     return; // return because we don't want to run normal code of buton click
                 }
                 ProgressBar();//circularProgressBar
-              
-                
-
-                    if (!cache.ContainsKey(input))//checking in our dictionory whether searched text 
+                if (!cache.ContainsKey(input))//checking in our dictionory whether searched text 
                     //is already there or not
                     {
                         imagesList = await datafetch.GetImageData(input, imagessearch);
@@ -84,7 +79,6 @@ namespace ImageGalleryv1._0._1
                         MessageBox.Show("Dear User, I think you searched Same Result Earlier");
                         List<ImageItem> tempList = cache[input];
                         imagesList = tempList;
-
                     }
                     AddTiles(imagesList);
 
@@ -95,7 +89,6 @@ namespace ImageGalleryv1._0._1
                 {
                     MessageBox.Show("Dear User,Search Limit Exceeded App is Closing");
                     Application.Exit();
-
                 }
            }
         private void initialsetup()
